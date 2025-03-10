@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crew Assignments</title>
+</head>
+<body>
+    <h1>Crew Assignments</h1>
+    <table border="1">
+        <tr>
+            <th>Crew Member</th>
+            <th>Flight</th>
+        </tr>
+        {% for assignment in assignments %}
+        <tr>
+            <td>{{ assignment.crew_member.name }}</td>
+            <td>{{ assignment.flight.flight_number }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Crew Scheduling</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #141e30, #243b55);
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Table Styling */
+        .assignment-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .assignment-table th, .assignment-table td {
+            padding: 14px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .assignment-table th {
+            background: #007bff;
+            font-weight: bold;
+        }
+
+        .assignment-table tr {
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .assignment-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Toggle Section */
+        #assignmentTable {
+            display: none; /* Ensures it is hidden initially */
+            margin-top: 20px;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <script>
+        function toggleAssignments() {
+            var table = document.getElementById("assignmentTable");
+
+            // Ensures that the table opens immediately on first click
+            if (table.style.display === "none" || table.style.display === "") {
+                table.style.display = "block";
+            } else {
+                table.style.display = "none";
+            }
+        }
+
+        function closeAssignments() {
+            document.getElementById("assignmentTable").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container fade-in">
+        <h1>Airline Crew Scheduling System</h1>
+        
+        <!-- Button to toggle assignments -->
+        <button class="btn" onclick="toggleAssignments()">View Crew Assignments</button>
+
+        <!-- Crew Assignments Table (Initially Hidden) -->
+        <div id="assignmentTable">
+            <h2>Crew Assignments</h2>
+            <table class="assignment-table">
+                <tr>
+                    <th>Crew Member</th>
+                    <th>Role</th>
+                    <th>Flight</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                </tr>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment.crew_member.name }}</td>
+                    <td>{{ assignment.crew_member.role }}</td>
+                    <td>{{ assignment.flight.flight_number }}</td>
+                    <td>{{ assignment.flight.origin }}</td>
+                    <td>{{ assignment.flight.destination }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br>
+        <!-- When clicking "Go to Admin Panel", close assignments -->
+        <a href="/admin/" class="btn" onclick="closeAssignments()">Go to Admin Panel</a>
+
+        <div class="footer">
+            <p>&copy; 2025 Airline Crew Scheduling. All Rights Reserved.</p>
+            <p> Lohit, Aravind and SudharshanBabu Co Private Limited</p>
+        </div>
+    </div>
+
+</body>
+</html>
