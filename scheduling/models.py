@@ -24,3 +24,4 @@ class Assignment(models.Model):
 
     def __str__(self):
         return f"{self.crew_member} -> {self.flight}"
+    

@@ -2,20 +2,39 @@
 <html>
 <head>
     <title>Crew Assignments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 20px;
+        }
+        h2 {
+            color: #1f2937;
+        }
+        .assignment-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .assignment-item {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
 </head>
 <body>
-    <h1>Crew Assignments</h1>
-    <table border="1">
-        <tr>
-            <th>Crew Member</th>
-            <th>Flight</th>
-        </tr>
-        {% for assignment in assignments %}
-        <tr>
-            <td>{{ assignment.crew_member.name }}</td>
-            <td>{{ assignment.flight.flight_number }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <h2>Crew Assignments (Optimized)</h2>
+    <div class="assignment-list">
+        {% if assignments %}
+            {% for crew, flight in assignments %}
+                <div class="assignment-item">{{ crew }} assigned to {{ flight }}</div>
+            {% endfor %}
+        {% else %}
+            <p>No assignments available.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
